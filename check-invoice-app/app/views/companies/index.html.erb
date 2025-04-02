@@ -1,0 +1,23 @@
+<div class="relative overflow-x-auto max-w-7xl mx-auto p-8 w-full">
+  <h1 class="font-bold text-4xl mb-6 text-gray-800">Companies</h1>
+
+  <table class="w-full text-xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">Company Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= company.id %>
+          </th>
+          <td class="px-6 py-4"><%= company.name %></td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

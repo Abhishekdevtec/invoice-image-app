@@ -1,0 +1,2 @@
+class CheckInvoicesController < ApplicationController
+end

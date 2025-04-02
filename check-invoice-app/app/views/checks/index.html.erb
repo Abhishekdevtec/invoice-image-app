@@ -1,0 +1,33 @@
+
+<div class="relative overflow-x-auto max-w-7xl mx-auto p-8 w-full">
+  <h1 class="font-bold text-4xl mb-6 text-gray-800">Checks</h1>
+
+  <%= link_to "New Check", new_check_path, class: "bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition" %>
+  <table class="w-full text-xl text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-6">
+    <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Date</th>
+        <th scope="col" class="px-6 py-3">Company</th>
+        <th scope="col" class="px-6 py-3">Check #</th>
+        <th scope="col" class="px-6 py-3">Invoices</th>
+        <th scope="col" class="px-6 py-3">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @checks %>
+    </tbody>
+  </table>
+</div>
+
+<div id="capture-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+    <h2 class="text-xl font-bold mb-4">Capture Check Image</h2>
+    <video id="camera" autoplay class="w-full h-auto rounded-lg"></video>
+    <canvas id="canvas" class="hidden"></canvas>
+    <button id="snap-btn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-4">Capture</button>
+    <button id="save-btn" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mt-4 hidden">Save</button>
+    <button id="close-btn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 mt-4">Close</button>
+  </div>
+</div>
+
+<%= turbo_stream_from "checks" %>

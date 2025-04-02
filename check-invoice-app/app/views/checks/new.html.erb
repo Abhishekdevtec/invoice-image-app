@@ -1,0 +1,5 @@
+<div class="relative overflow-x-auto max-w-7xl mx-auto p-8 w-full">
+  <%= turbo_frame_tag "new_check" do %>
+    <%= render "checks/form", check: @check %>
+  <% end %>
+</div>

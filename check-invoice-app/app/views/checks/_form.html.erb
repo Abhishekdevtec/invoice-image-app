@@ -1,0 +1,56 @@
+<div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800">Capture Check</h2>
+
+  <%= form_with model: @check, data: { turbo_frame: "new_check" }, html: { multipart: true }, class: "space-y-4" do |f| %>
+    <% if @check.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+        <strong>Oops! Something went wrong:</strong>
+        <ul class="mt-2">
+          <% @check.errors.full_messages.each do |message| %>
+            <li>- <%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div data-controller="camera">
+      <button type="button" data-camera-target="captureButton" data-action="click->camera#capture" 
+        class="mt-2 bg-blue-500 text-white px-4 py-2 rounded shadow">📸 Capture</button>
+
+      <div class="flex items-center gap-4 mt-2">
+        <button type="button" data-camera-target="retakeButton" data-action="click->camera#retake" 
+          class="bg-blue-500 text-white px-4 py-2 rounded shadow hidden">🔄 Retake</button>
+        
+        <img data-camera-target="preview" class="w-32 h-auto hidden rounded shadow">
+      </div>
+      <div class="flex justify-center">
+          <video data-camera-target="video" class="w-full max-w-md rounded-lg shadow-md"></video>
+        </div>
+      <canvas data-camera-target="canvas" class="hidden"></canvas>
+
+      <input type="file" accept="image/*" data-camera-target="fileInput" name="check[image]" class="hidden">
+    </div>
+
+    <div>
+      <%= f.label :invoice_ids, "Invoices", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.text_field :invoice_ids, placeholder: "1234, 1235, 1236", 
+        class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= f.label :company_id, "Company", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.collection_select :company_id, Company.all, :id, :name, {}, 
+        class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= f.label :number, "Check #", class: "block text-gray-700 font-medium mb-2" %>
+      <%= f.text_field :number, 
+        class: "w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+    </div>
+
+    <div>
+      <%= f.submit "Submit", class: "w-full bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300" %>
+    </div>
+  <% end %>
+</div>

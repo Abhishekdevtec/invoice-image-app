@@ -1,0 +1,29 @@
+<turbo-stream action="update" target="new_check">
+  <template>
+    <turbo-frame id="new_check">
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="flex flex-col items-center justify-center space-y-6 p-4 md:p-8 w-full max-w-2xl">
+          <div class="border rounded-lg p-6 shadow-lg w-full text-center bg-white flex items-center justify-center flex-col">
+            <p class="text-lg sm:text-2xl font-semibold text-gray-700">
+              <%= @check.company.name %><br />
+            </p>
+            <p>Check# <%= @check.number %><br />
+            </p>
+            <p>Uploaded!</p>
+            <br>
+            <div class="my-4" style="font-size:100px">😊</div>
+            <br>
+            <p>Invoices</p>
+            <p class="text-gray-600 text-xlg">
+              <br />
+            <%= @check.invoices.present? ? @check.invoices.map { |inv| inv.number }.join(", ") : "No Invoices" %>
+            </p>
+            <div class="mt-4 w-full sm:w-auto">
+              <%= button_to "Upload New Check", new_check_path, method: :get, class: "w-full bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </turbo-frame>
+  </template>
+</turbo-stream>

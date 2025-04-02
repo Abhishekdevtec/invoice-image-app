@@ -1,0 +1,18 @@
+<tr id="check_<%= check.id %>" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+  <td class="px-6 py-4"><%= check.created_at %></td>
+
+  <td class="px-6 py-4"><%= check.company.name %></td>
+  <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <%= check.number %>
+  </td>
+  <td class="px-6 py-4"><%= check.invoices.pluck(:number).join(", ") %></td>
+  <td class="px-6 py-4">
+    <% if check.image.attached? %>
+      <%= image_tag check.image.variant(resize_to_limit: [100, 100]), class: "w-16 h-16 rounded-lg shadow" %>
+    <% else %>
+      <span class="text-gray-400 italic">No Image</span>
+    <% end %>
+  </td>
+  <td class="px-6 py-4">
+  </td>
+</tr>
