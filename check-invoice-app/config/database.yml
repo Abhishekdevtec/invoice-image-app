@@ -15,9 +15,6 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
-  username: postgres
-  password: password
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -25,6 +22,10 @@ default: &default
 
 development:
   <<: *default
+  host: localhost
+  username: postgres
+  password: password
+
   database: check_invoice_app_development
 
   # The specified database role being used to connect to PostgreSQL.
@@ -75,27 +76,30 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-#   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  primary: &primary_production
-    <<: *default
-    database: check_invoice_app_production
-    username: check_invoice_app
-    password: <%= ENV["CHECK_INVOICE_APP_DATABASE_PASSWORD"] %>
-  cache:
-    <<: *primary_production
-    database: check_invoice_app_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: check_invoice_app_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: check_invoice_app_production_cable
-    migrations_paths: db/cable_migrate
+# production:
+  # primary: &primary_production
+  #   <<: *default
+  #   database: check_invoice_app_production
+  #   username: check_invoice_app
+  #   password: <%= ENV["CHECK_INVOICE_APP_DATABASE_PASSWORD"] %>
+  # cache:
+  #   <<: *primary_production
+  #   database: check_invoice_app_production_cache
+  #   migrations_paths: db/cache_migrate
+  # queue:
+  #   <<: *primary_production
+  #   database: check_invoice_app_production_queue
+  #   migrations_paths: db/queue_migrate
+  # cable:
+  #   <<: *primary_production
+  #   database: check_invoice_app_production_cable
+  #   migrations_paths: db/cable_migrate
+
+
