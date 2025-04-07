@@ -172,6 +172,7 @@ GEM
       date
       net-protocol
     net-pop (0.1.2)
+      net-protocol
     net-protocol (0.2.2)
       timeout
     net-scp (4.1.0)
@@ -403,6 +404,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  net-pop
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)

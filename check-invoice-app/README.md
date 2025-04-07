@@ -11,7 +11,7 @@ This project consists of two parts:
 
 ### Backend (Rails 8)
 
-* **Ruby:** 3.3.3
+* **Ruby:** 3.2.2
 * **Rails:** 8.0.2
 * **Database:** PostgreSQL
 * **Puma:** Web Server
