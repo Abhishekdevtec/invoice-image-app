@@ -1,6 +1,8 @@
 import axios from "axios";
 // We can adjust the base URL if necessary like for staging or production
-const API_BASE_URL = "http://localhost:3000"; 
+// const API_BASE_URL = "http://localhost:3000"; // uncomment while using in local
+const API_BASE_URL = "https://invoice-image-app.onrender.com"; // setting render's base url
+
 
 const makeApiRequest = async (method, endpoint, data = null) => {
   try {
