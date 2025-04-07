@@ -32,8 +32,11 @@ class Check < ApplicationRecord
 
   def image_url
     return unless image.attached? # Ensure image is present
+    
+    host = Rails.env.production? ? "https://invoice-image-app.onrender.com" : "http://localhost:3000"
 
-    Rails.application.routes.url_helpers.rails_blob_url(image, host: "localhost:3000")
+    Rails.application.routes.url_helpers.rails_blob_url(image, host: host)
+    # Rails.application.routes.url_helpers.rails_blob_url(image, host: "localhost:3000")
   rescue => e
     Rails.logger.error "Error generating image URL: #{e.message}"
     nil
